@@ -3,8 +3,10 @@ package com.yang.realworld.infrastructure.mybatis.mapper;
 import com.yang.realworld.core.user.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
 @Mapper
+@Component
 public interface UserMapper {
 
   User findById(@Param("id") String id);

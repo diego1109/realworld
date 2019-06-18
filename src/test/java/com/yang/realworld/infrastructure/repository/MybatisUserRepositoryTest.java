@@ -43,4 +43,21 @@ public class MybatisUserRepositoryTest {
     Optional<User> userOptional3 = userRepository.findByUserName("diego");
     assertThat(userOptional3.get().getId(),is(user.getId()));
   }
+
+  @Test
+  public void shuould_update_user_success() {
+    userRepository.save(user);
+    String newEmail = "2248@qq.com";
+    user.update(newEmail, "", "", "", "");
+    userRepository.save(user);
+    Optional<User> optionalUser = userRepository.findById(user.getId());
+    assertThat(optionalUser.get().getEmail(), is(newEmail));
+
+    String newName = "newUserName";
+    user.update("", newName, "", "", "");
+    userRepository.save(user);
+    Optional<User> optionalUser2 = userRepository.findById(user.getId());
+    assertThat(optionalUser2.get().getUserName(), is(newName));
+
+  }
 }

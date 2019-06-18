@@ -2,8 +2,9 @@ package com.yang.realworld.core.user;
 
 import java.util.UUID;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-//@NoArgsConstructor
+@NoArgsConstructor
 @Getter
 public class User {
   private String id;
@@ -12,13 +13,6 @@ public class User {
   private String password;
   private String bio;
   private String image;
-
-  public User(String id, String email, String userName, String password) {
-    this.id = id;
-    this.email = email;
-    this.userName = userName;
-    this.password = password;
-  }
 
   public User(String email, String userName, String password, String bio, String image) {
     this.id = UUID.randomUUID().toString();
