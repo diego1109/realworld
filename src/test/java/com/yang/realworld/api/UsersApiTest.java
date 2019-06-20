@@ -85,6 +85,42 @@ public class UsersApiTest {
         .body("user.token", equalTo("123"));
   }
 
+  @Test
+  public void should_login_success() {
+    String email = "1027@qq.com";
+    String username = "diego";
+    String password = "123";
+
+    User user = new User(email, username, password, "", defaultAvatar);
+    UserData userData = new UserData("123", email, username, "", defaultAvatar);
+
+    when(userRepository.findByEmail(eq(user.getEmail()))).thenReturn(Optional.ofNullable(user));
+    when(userReadService.findById(eq(user.getId()))).thenReturn(userData);
+    when(jwtService.toToken(any())).thenReturn("123");
+
+    Map<String,Object> param = new HashMap<String,Object>(){{
+      put("user",new HashMap<String,Object>(){{
+        put("email",email);
+        put("password",password);
+      }});
+    }};
+
+    given()
+        .contentType("application/json")
+        .body(param)
+        .when()
+        .post("/users/login")
+        .prettyPeek()
+        .then()
+        .statusCode(200)
+        .body("user.userName",equalTo(user.getUserName()))
+        .body("user.email",equalTo(user.getEmail()))
+        .body("user.bio",equalTo(""))
+        .body("user.image",equalTo(defaultAvatar))
+        .body("user.token",equalTo("123"));
+
+  }
+
   private HashMap<String, Object> prepareRegisterParameter(final String email,
                                                            final String username) {
     return new HashMap<String, Object>() {{

@@ -11,6 +11,7 @@ import com.yang.realworld.core.user.User;
 import com.yang.realworld.core.user.UserRepository;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -84,6 +85,21 @@ public class UsersApi {
     }
   }
 
+  @PostMapping("/login")
+  public ResponseEntity userLogin(@Valid @RequestBody LoginParam loginParam,
+                                  BindingResult bindingResult) {
+    Optional<User> optional = userRepository.findByEmail(loginParam.getEmail());
+    if (optional.isPresent() && encryptService
+        .check(loginParam.getPassword(), optional.get().getPassword())) {
+      UserData userData = userQueryService.findById(optional.get().getId()).get();
+      return ResponseEntity
+          .ok(userResponse(new UserWithToken(userData, jwtService.toToken(optional.get()))));
+    } else {
+      bindingResult.rejectValue("password", "INVALID", "invalid email or password");
+      throw new InvalidRequestException(bindingResult);
+    }
+  }
+
   private Map<String, Object> userResponse(UserWithToken userWithToken) {
     return new HashMap<String, Object>() {
       {
@@ -91,6 +107,21 @@ public class UsersApi {
       }
     };
   }
+
+
+}
+
+
+@Getter
+@JsonRootName("user")
+@NoArgsConstructor
+class LoginParam {
+
+  @NotBlank(message = "can't be empty")
+  @Email(message = "should be email")
+  private String email;
+  @NotBlank(message = "can't be empty")
+  private String password;
 }
 
 @Getter
