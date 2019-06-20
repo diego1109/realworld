@@ -29,7 +29,6 @@ public class UserQueryServiceTest {
   @Autowired
   private UserQueryService userQueryService;
   private User user;
-  private UserData userData;
 
   @Before
   public void setUp() {
@@ -37,7 +36,7 @@ public class UserQueryServiceTest {
   }
 
   @Test
-  public void shouid_query_by_user_id_success() {
+  public void should_query_by_user_id_success() {
     userRepository.save(user);
     Optional<UserData> optionalUserData = userQueryService.findById(user.getId());
     assertThat(optionalUserData.get().getUserName(), is(user.getUserName()));
