@@ -74,7 +74,7 @@ public class UsersApi {
       throw new InvalidRequestException(bindingResult);
     }
     if (userRepository.findByUserName(registerParam.getUserName()).isPresent()) {
-      // 在bindingResult中注册一个field error
+
       bindingResult.rejectValue("userName", "DUPLICATED", "duplicated userName");
     }
     if (userRepository.findByEmail(registerParam.getEmail()).isPresent()) {
