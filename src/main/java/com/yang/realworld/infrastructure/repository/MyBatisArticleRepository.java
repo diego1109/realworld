@@ -10,12 +10,12 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-public class MybatisArticleRepository implements ArticleRepository {
+public class MyBatisArticleRepository implements ArticleRepository {
 
   private ArticleMapper articleMapper;
 
   @Autowired
-  public MybatisArticleRepository(
+  public MyBatisArticleRepository(
       ArticleMapper articleMapper) {
     this.articleMapper = articleMapper;
   }

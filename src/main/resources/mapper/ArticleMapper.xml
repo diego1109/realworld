@@ -3,6 +3,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yang.realworld.infrastructure.mybatis.mapper.ArticleMapper">
 
+
 	<sql id="selectArticle">
     select
         A.id articleId,
@@ -36,7 +37,7 @@
         #{article.description},
         #{article.body},
         #{article.userId},
-        #{article.createdAt},
+        #{article.createdAt, typeHandler=com.yang.realworld.infrastructure.mybatis.DateTimeHandler},
         #{article.updatedAt}
         )
   </insert>

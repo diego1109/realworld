@@ -7,7 +7,7 @@ import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTest
 import com.yang.realworld.application.data.UserData;
 import com.yang.realworld.core.user.User;
 import com.yang.realworld.core.user.UserRepository;
-import com.yang.realworld.infrastructure.repository.MybatisUserRepository;
+import com.yang.realworld.infrastructure.repository.MyBatisUserRepository;
 import java.util.Optional;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +21,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @MybatisTest
 @AutoConfigureTestDatabase(replace = NONE)
-@Import({MybatisUserRepository.class, UserQueryService.class})
+@Import({MyBatisUserRepository.class, UserQueryService.class})
 public class UserQueryServiceTest {
 
   @Autowired

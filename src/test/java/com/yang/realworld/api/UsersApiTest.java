@@ -13,7 +13,7 @@ import com.yang.realworld.core.service.JwtService;
 import com.yang.realworld.core.user.User;
 import com.yang.realworld.core.user.UserRepository;
 import com.yang.realworld.infrastructure.mybatis.readservice.UserReadService;
-import com.yang.realworld.infrastructure.repository.MybatisUserRepository;
+import com.yang.realworld.infrastructure.repository.MyBatisUserRepository;
 import com.yang.realworld.infrastructure.service.DefaultJwtService;
 import com.yang.realworld.infrastructure.service.NaiveEncryptService;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
@@ -32,7 +32,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(UsersApi.class)
-@Import({MybatisUserRepository.class, UserQueryService.class, NaiveEncryptService.class,
+@Import({MyBatisUserRepository.class, UserQueryService.class, NaiveEncryptService.class,
     DefaultJwtService.class, WebSecurityConfig.class})
 public class UsersApiTest {
 

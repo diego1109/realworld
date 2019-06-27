@@ -18,7 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @MybatisTest
-@Import(MybatisUserRepository.class)
+@Import(MyBatisUserRepository.class)
 @AutoConfigureTestDatabase(replace = NONE)
 public class MybatisUserRepositoryTest {
 

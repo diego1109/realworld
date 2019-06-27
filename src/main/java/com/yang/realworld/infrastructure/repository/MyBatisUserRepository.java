@@ -8,12 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class MybatisUserRepository implements UserRepository {
+public class MyBatisUserRepository implements UserRepository {
 
   private UserMapper userMapper;
 
   @Autowired
-  public MybatisUserRepository(UserMapper userMapper) {
+  public MyBatisUserRepository(UserMapper userMapper) {
     this.userMapper = userMapper;
   }
 
