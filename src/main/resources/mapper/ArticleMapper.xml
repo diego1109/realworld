@@ -20,14 +20,17 @@
     left join article_tags AT on A.id = AT.article_id
     left join tags T on T.id = AT.tag_id
   </sql>
+
 	<insert id="insertTag">
     insert into tags (id,name)
     values (#{tag.id},#{tag.name})
   </insert>
+
 	<insert id="insertArticleTagRelation">
     insert into article_tags (article_id, tag_id)
     values (#{articleId},#{tagId})
   </insert>
+
 	<insert id="insert">
     insert into articles (id,slug,title,description,body,user_id,created_at,updated_at)
     values (
@@ -41,6 +44,7 @@
         #{article.updatedAt}
         )
   </insert>
+
 	<update id="update">
 		update articles
 		<set>
@@ -52,13 +56,30 @@
 		where id = #{article.id}
 	</update>
 
-	<select id="findById" resultType="com.yang.realworld.core.article.Article">
+	<select id="findById" resultMap="article">
 		<include refid="selectArticle"/>
 		where A.id = #{id}
 	</select>
+
 	<select id="findTag" resultType="java.lang.Boolean">
     select count(*)
     from tags
     where name = #{tagName}
   </select>
+
+	<resultMap id="article" type="com.yang.realworld.core.article.Article">
+		<id	property="id" column="articleId"/>
+		<result property="userId" column="articleUserId"/>
+		<result property="slug" column="articleAlug"/>
+		<result property="title" column="articleTitle"/>
+		<result property="description" column="articleDescription"/>
+		<result property="body" column="articleBody"/>
+		<collection property="tags" ofType="arraylist" resultMap="tag"/>
+	</resultMap>
+
+	<resultMap id="tag" type="com.yang.realworld.core.article.Tag">
+		<id	property="id" column="tagId"/>
+		<result property="name" column="tagName"/>
+	</resultMap>
+
 </mapper>

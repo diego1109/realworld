@@ -37,7 +37,6 @@ public class MyBatisArticleRepository implements ArticleRepository {
       }
       articleMapper.insertArticleTagRelation(article.getId(), tag.getId());
     }
-    System.out.println(article.getCreatedAt());
     articleMapper.insert(article);
   }
 
