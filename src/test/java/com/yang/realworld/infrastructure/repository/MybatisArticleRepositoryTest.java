@@ -1,7 +1,6 @@
 package com.yang.realworld.infrastructure.repository;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import com.yang.realworld.core.article.Article;
@@ -43,12 +42,16 @@ public class MybatisArticleRepositoryTest {
 
   @Test
   public void should_create_and_fetch_article_success() {
-    System.out.println("id:"+article.getId());
     articleRepository.save(article);
     Optional<Article> optional = articleRepository.findById(article.getId());
     assertThat(optional.isPresent(), is(true));
     Article fetched = optional.get();
+    assertThat(fetched.getId(), is(article.getId()));
+    assertThat(fetched.getUserId(), is(article.getUserId()));
+    assertThat(fetched.getSlug(), is(article.getSlug()));
+    assertThat(fetched.getTags().size(), is(article.getTags().size()));
+    assertThat(fetched.getDescription(), is(article.getDescription()));
     assertThat(fetched.getTitle(), is(article.getTitle()));
-    assertThat(fetched.getBody(), not(""));
+    assertThat(fetched.getBody(), is(article.getBody()));
   }
 }

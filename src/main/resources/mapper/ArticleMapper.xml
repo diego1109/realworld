@@ -41,7 +41,7 @@
         #{article.body},
         #{article.userId},
         #{article.createdAt, typeHandler=com.yang.realworld.infrastructure.mybatis.DateTimeHandler},
-        #{article.updatedAt}
+        #{article.updatedAt, typeHandler=com.yang.realworld.infrastructure.mybatis.DateTimeHandler}
         )
   </insert>
 
@@ -74,6 +74,8 @@
 		<result property="title" column="articleTitle"/>
 		<result property="description" column="articleDescription"/>
 		<result property="body" column="articleBody"/>
+		<result property="createdAt" column="articleCreatedAt"
+			typeHandler="com.yang.realworld.infrastructure.mybatis.DateTimeHandler"/>
 		<collection property="tags" ofType="arraylist" resultMap="tag"/>
 	</resultMap>
 
