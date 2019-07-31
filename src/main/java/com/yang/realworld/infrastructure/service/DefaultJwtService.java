@@ -1,7 +1,7 @@
 package com.yang.realworld.infrastructure.service;
 
-import com.yang.realworld.core.service.JwtService;
-import com.yang.realworld.core.user.User;
+import com.yang.realworld.domain.service.JwtService;
+import com.yang.realworld.domain.user.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;

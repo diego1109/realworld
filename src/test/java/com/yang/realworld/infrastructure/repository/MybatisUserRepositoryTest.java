@@ -4,8 +4,8 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace.NONE;
 
-import com.yang.realworld.core.user.User;
-import com.yang.realworld.core.user.UserRepository;
+import com.yang.realworld.domain.user.User;
+import com.yang.realworld.domain.user.UserRepository;
 import java.util.Optional;
 import org.junit.Before;
 import org.junit.Test;

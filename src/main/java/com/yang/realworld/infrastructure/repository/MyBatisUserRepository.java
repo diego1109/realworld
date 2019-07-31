@@ -1,7 +1,7 @@
 package com.yang.realworld.infrastructure.repository;
 
-import com.yang.realworld.core.user.User;
-import com.yang.realworld.core.user.UserRepository;
+import com.yang.realworld.domain.user.User;
+import com.yang.realworld.domain.user.UserRepository;
 import com.yang.realworld.infrastructure.mybatis.mapper.UserMapper;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;

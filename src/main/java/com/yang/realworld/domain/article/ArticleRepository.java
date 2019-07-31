@@ -1,4 +1,4 @@
-package com.yang.realworld.core.article;
+package com.yang.realworld.domain.article;
 
 import java.util.Optional;
 import org.springframework.stereotype.Repository;

@@ -1,7 +1,7 @@
 package com.yang.realworld.api.security;
 
-import com.yang.realworld.core.service.JwtService;
-import com.yang.realworld.core.user.UserRepository;
+import com.yang.realworld.domain.service.JwtService;
+import com.yang.realworld.domain.user.UserRepository;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Optional;

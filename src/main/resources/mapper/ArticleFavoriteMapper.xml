@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yang.realworld.infrastructure.mybatis.mapper.ArticleFavoriteMapper">
+
+	<insert id="insert">
+		insert into table article_favorites(article_id,user_id)
+		values (#{articleFavorite.articleId},#{articleFavorite.userId})
+	</insert>
+	<select id="find" resultMap="articleFavorite">
+		select
+			article_id articleFavoriteArticleId,
+			user_id articleFavoriteUserId
+		from article_favorites AT
+		where AT.article_id = #{articleId} and AT.userId = #{userId}
+	</select>
+
+	<resultMap id="articleFavorite" type="com.yang.realworld.domain.favorite.ArticleFavorite">
+		<result property="userId" column="articleFavoriteUserId"/>
+		<result property="articleId" column="articleFavoriteArticleId"/>
+	</resultMap>
+</mapper>

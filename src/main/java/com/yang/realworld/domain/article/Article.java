@@ -1,4 +1,4 @@
-package com.yang.realworld.core.article;
+package com.yang.realworld.domain.article;
 
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;

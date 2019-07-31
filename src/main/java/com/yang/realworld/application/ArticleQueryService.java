@@ -1,7 +1,7 @@
 package com.yang.realworld.application;
 
 import com.yang.realworld.application.data.ArticleData;
-import com.yang.realworld.core.user.User;
+import com.yang.realworld.domain.user.User;
 import com.yang.realworld.infrastructure.mybatis.ArticleFavoritesReadService;
 import com.yang.realworld.infrastructure.mybatis.ArticleReadService;
 import com.yang.realworld.infrastructure.mybatis.UserRelationshipQueryService;

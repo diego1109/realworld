@@ -20,11 +20,14 @@ public class ArticleData {
   private String title;
   private String description;
   private String body;
+  //是否点赞
   private Boolean favorited;
+  //点赞数
   private int favoritesCount;
   private DateTime createdAt;
   private DateTime updatedAt;
   private List<String> tagList;
+  //个人信息
   @JsonProperty("author")
   private ProfileData profileData;
 

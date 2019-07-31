@@ -3,10 +3,10 @@ package com.yang.realworld.infrastructure.repository;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-import com.yang.realworld.core.article.Article;
-import com.yang.realworld.core.article.ArticleRepository;
-import com.yang.realworld.core.user.User;
-import com.yang.realworld.core.user.UserRepository;
+import com.yang.realworld.domain.article.Article;
+import com.yang.realworld.domain.article.ArticleRepository;
+import com.yang.realworld.domain.user.User;
+import com.yang.realworld.domain.user.UserRepository;
 import java.util.Optional;
 import org.junit.Before;
 import org.junit.Test;

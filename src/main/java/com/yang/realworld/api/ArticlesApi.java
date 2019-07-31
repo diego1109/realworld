@@ -1,12 +1,12 @@
-package com.yang.realworld;
+package com.yang.realworld.api;
 
 
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.yang.realworld.api.exception.InvalidRequestException;
 import com.yang.realworld.application.ArticleQueryService;
-import com.yang.realworld.core.article.Article;
-import com.yang.realworld.core.article.ArticleRepository;
-import com.yang.realworld.core.user.User;
+import com.yang.realworld.domain.article.Article;
+import com.yang.realworld.domain.article.ArticleRepository;
+import com.yang.realworld.domain.user.User;
 import java.util.HashMap;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;

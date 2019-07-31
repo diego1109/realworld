@@ -4,8 +4,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.CoreMatchers.is;
 
-import com.yang.realworld.core.service.JwtService;
-import com.yang.realworld.core.user.User;
+import com.yang.realworld.domain.service.JwtService;
+import com.yang.realworld.domain.user.User;
 import java.util.Optional;
 import org.junit.Before;
 import org.junit.Test;

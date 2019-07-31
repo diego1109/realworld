@@ -1,4 +1,4 @@
-package com.yang.realworld.core.user;
+package com.yang.realworld.domain.user;
 
 import java.util.UUID;
 import lombok.Getter;

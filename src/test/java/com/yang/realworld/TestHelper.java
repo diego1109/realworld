@@ -2,8 +2,8 @@ package com.yang.realworld;
 
 import com.yang.realworld.application.data.ArticleData;
 import com.yang.realworld.application.data.ProfileData;
-import com.yang.realworld.core.article.Article;
-import com.yang.realworld.core.user.User;
+import com.yang.realworld.domain.article.Article;
+import com.yang.realworld.domain.user.User;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.joda.time.DateTime;

@@ -15,5 +15,6 @@ public class ProfileData {
   private String username;
   private String bio;
   private String image;
+  //关注
   private boolean following;
 }

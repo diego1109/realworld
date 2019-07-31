@@ -1,7 +1,7 @@
 package com.yang.realworld.infrastructure.mybatis.mapper;
 
-import com.yang.realworld.core.article.Article;
-import com.yang.realworld.core.article.Tag;
+import com.yang.realworld.domain.article.Article;
+import com.yang.realworld.domain.article.Tag;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;

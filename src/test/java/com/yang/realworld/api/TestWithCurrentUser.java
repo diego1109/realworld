@@ -5,9 +5,9 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
 import com.yang.realworld.application.data.UserData;
-import com.yang.realworld.core.service.JwtService;
-import com.yang.realworld.core.user.User;
-import com.yang.realworld.core.user.UserRepository;
+import com.yang.realworld.domain.service.JwtService;
+import com.yang.realworld.domain.user.User;
+import com.yang.realworld.domain.user.UserRepository;
 import com.yang.realworld.infrastructure.mybatis.readservice.UserReadService;
 import java.util.Optional;
 import org.junit.Before;

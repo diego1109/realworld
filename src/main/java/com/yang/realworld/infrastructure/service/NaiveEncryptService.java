@@ -1,6 +1,6 @@
 package com.yang.realworld.infrastructure.service;
 
-import com.yang.realworld.core.user.EncryptService;
+import com.yang.realworld.domain.user.EncryptService;
 import org.springframework.stereotype.Service;
 
 @Service

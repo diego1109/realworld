@@ -1,8 +1,8 @@
 package com.yang.realworld.infrastructure.repository;
 
-import com.yang.realworld.core.article.Article;
-import com.yang.realworld.core.article.ArticleRepository;
-import com.yang.realworld.core.article.Tag;
+import com.yang.realworld.domain.article.Article;
+import com.yang.realworld.domain.article.ArticleRepository;
+import com.yang.realworld.domain.article.Tag;
 import com.yang.realworld.infrastructure.mybatis.mapper.ArticleMapper;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
-package com.yang.realworld.core.service;
+package com.yang.realworld.domain.service;
 
-import com.yang.realworld.core.user.User;
+import com.yang.realworld.domain.user.User;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
 

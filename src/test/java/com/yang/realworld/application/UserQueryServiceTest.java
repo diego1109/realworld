@@ -5,8 +5,8 @@ import static org.hamcrest.core.Is.is;
 import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace.NONE;
 
 import com.yang.realworld.application.data.UserData;
-import com.yang.realworld.core.user.User;
-import com.yang.realworld.core.user.UserRepository;
+import com.yang.realworld.domain.user.User;
+import com.yang.realworld.domain.user.UserRepository;
 import com.yang.realworld.infrastructure.repository.MyBatisUserRepository;
 import java.util.Optional;
 import org.junit.Before;

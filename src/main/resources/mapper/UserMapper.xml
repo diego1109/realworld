@@ -53,7 +53,7 @@
     where id = #{user.id}
   </update>
 
-  <resultMap id="user" type="com.yang.realworld.core.user.User">
+  <resultMap id="user" type="com.yang.realworld.domain.user.User">
     <id column="id" property="id"/>
     <result column="username" property="userName"/>
     <result column="email" property="email"/>

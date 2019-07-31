@@ -1,6 +1,6 @@
 package com.yang.realworld.infrastructure.mybatis.mapper;
 
-import com.yang.realworld.core.user.User;
+import com.yang.realworld.domain.user.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
