@@ -4,15 +4,21 @@
 <mapper namespace="com.yang.realworld.infrastructure.mybatis.mapper.ArticleFavoriteMapper">
 
 	<insert id="insert">
-		insert into table article_favorites(article_id,user_id)
+		insert into article_favorites (article_id,user_id)
 		values (#{articleFavorite.articleId},#{articleFavorite.userId})
 	</insert>
+
+	<delete id="delete">
+		delete from article_favorites
+		where article_id = #{articleFavorite.articleId} and user_id = #{articleFavorite.userId}
+	</delete>
+
 	<select id="find" resultMap="articleFavorite">
 		select
 			article_id articleFavoriteArticleId,
 			user_id articleFavoriteUserId
 		from article_favorites AT
-		where AT.article_id = #{articleId} and AT.userId = #{userId}
+		where AT.article_id = #{articleId} and AT.user_id = #{userId}
 	</select>
 
 	<resultMap id="articleFavorite" type="com.yang.realworld.domain.favorite.ArticleFavorite">

@@ -5,7 +5,9 @@ import com.yang.realworld.domain.favorite.ArticleFavoriteRepository;
 import com.yang.realworld.infrastructure.mybatis.mapper.ArticleFavoriteMapper;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class MybatisArticleFavoriteRepository implements ArticleFavoriteRepository {
 
   private ArticleFavoriteMapper articleFavoriteMapper;

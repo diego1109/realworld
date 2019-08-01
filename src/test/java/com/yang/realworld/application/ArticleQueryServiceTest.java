@@ -1,6 +1,5 @@
 package com.yang.realworld.application;
 
-import com.yang.realworld.domain.article.Article;
 import com.yang.realworld.infrastructure.mybatis.ArticleFavoritesReadService;
 import com.yang.realworld.infrastructure.mybatis.UserRelationshipQueryService;
 import com.yang.realworld.infrastructure.repository.MyBatisUserRepository;
@@ -34,6 +33,6 @@ public class ArticleQueryServiceTest {
 
   @Test
   public void should_get_article_by_slug_success(){
-    Article article =
+
   }
 }
