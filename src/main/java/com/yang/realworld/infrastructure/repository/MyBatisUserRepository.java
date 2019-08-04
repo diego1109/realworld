@@ -1,5 +1,6 @@
 package com.yang.realworld.infrastructure.repository;
 
+import com.yang.realworld.domain.user.FollowRelation;
 import com.yang.realworld.domain.user.User;
 import com.yang.realworld.domain.user.UserRepository;
 import com.yang.realworld.infrastructure.mybatis.mapper.UserMapper;
@@ -40,4 +41,18 @@ public class MyBatisUserRepository implements UserRepository {
   public Optional<User> findByEmail(String email) {
     return Optional.ofNullable(userMapper.findByEmail(email));
   }
+
+  @Override
+  public void saveRelation(FollowRelation followRelation) {
+    if (!findRelation(followRelation.getUserId(), followRelation.getTargetId()).isPresent()) {
+      userMapper.saveRelation(followRelation);
+    }
+  }
+
+  @Override
+  public Optional<FollowRelation> findRelation(String userId, String targetId) {
+    return Optional.ofNullable(userMapper.findRelation(userId, targetId));
+  }
+
+
 }

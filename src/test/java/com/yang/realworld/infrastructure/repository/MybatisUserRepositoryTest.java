@@ -4,6 +4,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace.NONE;
 
+import com.yang.realworld.domain.user.FollowRelation;
 import com.yang.realworld.domain.user.User;
 import com.yang.realworld.domain.user.UserRepository;
 import java.util.Optional;
@@ -24,11 +25,27 @@ public class MybatisUserRepositoryTest {
 
   @Autowired
   private UserRepository userRepository;
+  private FollowRelation followRelation;
+
   private User user;
+  private String anotherUserId = "haha";
+
 
   @Before
   public void setUp() throws Exception {
     user = new User("hdj@qq.com", "diego", "234", "", "default");
+    followRelation  = new FollowRelation(user.getId(),anotherUserId);
+  }
+
+  @Test
+  public void should_save_and_fetch_follow_relation_succeed() throws Exception{
+    userRepository.saveRelation(followRelation);
+    Optional<FollowRelation> optional = userRepository.findRelation(user.getId(),anotherUserId);
+
+    assertThat(optional.isPresent(),is(true));
+    FollowRelation refetch = optional.get();
+    assertThat(refetch.getUserId(), is(user.getId()));
+    assertThat(refetch.getTargetId(),is(anotherUserId));
   }
 
   @Test

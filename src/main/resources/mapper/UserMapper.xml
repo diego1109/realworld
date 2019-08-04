@@ -13,6 +13,7 @@
     )
     </insert>
 
+
   <select id="findById" resultMap="user">
     select id,username, email,password,bio,image
     from users
@@ -30,6 +31,21 @@
     from users
     where email = #{email}
   </select>
+
+  <insert id="saveRelation">
+    insert into follows( user_id, follow_id)
+    values (#{followRelation.userId},#{followRelation.targetId})
+  </insert>
+
+  <select id="findRelation" resultMap="follow">
+    select user_id userId,follow_id followId from follows
+    where user_id = #{userId} and follow_id = #{targetId}
+  </select>
+
+  <resultMap id="follow" type="com.yang.realworld.domain.user.FollowRelation">
+    <result property="userId" column="userId"/>
+    <result property="targetId" column="followId"/>
+  </resultMap>
 
   <update id="update">
     update users

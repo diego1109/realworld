@@ -1,5 +1,6 @@
 package com.yang.realworld.infrastructure.mybatis.mapper;
 
+import com.yang.realworld.domain.user.FollowRelation;
 import com.yang.realworld.domain.user.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -18,6 +19,10 @@ public interface UserMapper {
   User findByName(@Param("userName") String userName);
 
   User findByEmail(@Param("email") String email);
+
+  void saveRelation(@Param("followRelation") FollowRelation followRelation);
+
+  FollowRelation findRelation(@Param("userId") String userId, @Param("targetId") String targetId);
 }
 
 
