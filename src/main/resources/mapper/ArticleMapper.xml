@@ -66,6 +66,10 @@
     from tags
     where name = #{tagName}
   </select>
+	<select id="findBySlug" resultMap="article">
+		<include refid="selectArticle"/>
+		where A.slug = #{slug}
+	</select>
 
 	<resultMap id="article" type="com.yang.realworld.domain.article.Article">
 		<id	property="id" column="articleId"/>

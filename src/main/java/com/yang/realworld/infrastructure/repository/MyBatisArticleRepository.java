@@ -47,7 +47,7 @@ public class MyBatisArticleRepository implements ArticleRepository {
 
   @Override
   public Optional<Article> findBySlug(String slug) {
-    return Optional.empty();
+    return Optional.ofNullable(articleMapper.findBySlug(slug));
   }
 
   @Override

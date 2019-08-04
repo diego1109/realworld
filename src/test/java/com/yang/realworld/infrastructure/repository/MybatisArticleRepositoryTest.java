@@ -54,4 +54,18 @@ public class MybatisArticleRepositoryTest {
     assertThat(fetched.getTitle(), is(article.getTitle()));
     assertThat(fetched.getBody(), is(article.getBody()));
   }
+
+  @Test
+  public void should_find_article_by_slug_succeed(){
+    articleRepository.save(article);
+    Optional<Article> optional = articleRepository.findBySlug(article.getSlug());
+    Article fetched = optional.get();
+    assertThat(fetched.getId(), is(article.getId()));
+    assertThat(fetched.getUserId(), is(article.getUserId()));
+    assertThat(fetched.getSlug(), is(article.getSlug()));
+    assertThat(fetched.getTags().size(), is(article.getTags().size()));
+    assertThat(fetched.getDescription(), is(article.getDescription()));
+    assertThat(fetched.getTitle(), is(article.getTitle()));
+    assertThat(fetched.getBody(), is(article.getBody()));
+  }
 }

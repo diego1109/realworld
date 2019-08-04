@@ -1,6 +1,7 @@
 package com.yang.realworld.api;
 
 
+import com.fasterxml.jackson.annotation.JsonRootName;
 import com.yang.realworld.api.exception.ResourceNotFoundException;
 import com.yang.realworld.application.ArticleQueryService;
 import com.yang.realworld.application.data.ArticleData;
@@ -8,11 +9,16 @@ import com.yang.realworld.domain.article.ArticleRepository;
 import com.yang.realworld.domain.user.User;
 import java.util.HashMap;
 import java.util.Map;
+import javax.validation.Valid;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,9 +43,28 @@ public class ArticleApi {
             ResourceNotFoundException::new);
   }
 
+  @PutMapping
+  public ResponseEntity<?> updateArticle(@PathVariable("slug")String slug,
+                                         @AuthenticationPrincipal User user,
+                                         @Valid @RequestBody UpdateArticleParam updateArticleParam){
+
+    articleRepository.findBySlug(slug);
+    return null;
+  }
+
   private Map<String, Object> articleResponse(ArticleData articleData) {
     return new HashMap<String, Object>() {{
       put("article", articleData);
     }};
   }
+}
+
+
+@Getter
+@NoArgsConstructor
+@JsonRootName("article")
+class UpdateArticleParam{
+  private String title = "";
+  private String description = "";
+  private String body = "";
 }
