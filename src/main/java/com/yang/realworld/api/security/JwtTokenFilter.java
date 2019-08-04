@@ -15,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+@SuppressWarnings("SpringJavaAutowiringInspection")
 public class JwtTokenFilter extends OncePerRequestFilter {
   @Autowired
   private UserRepository userRepository;
@@ -58,3 +59,4 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     }
   }
 }
+

@@ -1,5 +1,6 @@
 package com.yang.realworld.api;
 
+import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
@@ -12,6 +13,8 @@ import com.yang.realworld.application.data.ArticleData;
 import com.yang.realworld.domain.article.Article;
 import com.yang.realworld.domain.article.ArticleRepository;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 import org.joda.time.DateTime;
 import org.joda.time.format.ISODateTimeFormat;
@@ -60,4 +63,32 @@ public class ArticleApiTest extends TestWithCurrentUser {
         .body("article.createdAt", equalTo(ISODateTimeFormat.dateTime().withZoneUTC().print(time)));
 
   }
+
+  @Test
+  public void should_update_article_succeed() throws Exception {
+    DateTime time = new DateTime();
+    Article article = new Article("New Article", "Desc", "Body",
+                                  new String[]{"java", "spring", "jpg"}, user.getId(), time);
+    Map<String, Object> updateParam = new HashMap<String, Object>() {{
+      put("article", new HashMap<String, Object>() {{
+        put("title", "update title"); put("description", "update description");
+        put("body", "update body");
+      }});
+    }};
+    when(articleRepository.findBySlug(eq(article.getSlug()))).thenReturn(Optional.of(article));
+    ArticleData articleData = TestHelper.getArticleDataFromArticleAndUser(article, user);
+    when(articleQueryService.findBySlug(eq(article.getSlug()), eq(user)))
+        .thenReturn(Optional.of(articleData));
+
+    given()
+        .contentType("application/json")
+        .header("Authorization", "Token " + token)
+        .body(updateParam)
+        .when()
+        .put("/articles/{slug}", article.getSlug())
+        .then()
+        .statusCode(200)
+        .body("article.slug", equalTo(articleData.getSlug()));
+  }
+
 }

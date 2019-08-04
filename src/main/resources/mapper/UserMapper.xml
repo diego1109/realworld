@@ -26,6 +26,12 @@
     where username = #{userName}
   </select>
 
+  <select id="findByUsername" resultMap="user">
+    select id,username, email,password,bio,image
+    from users
+    where username = #{userName}
+  </select>
+
   <select id="findByEmail" resultMap="user">
     select id,username, email,password,bio,image
     from users

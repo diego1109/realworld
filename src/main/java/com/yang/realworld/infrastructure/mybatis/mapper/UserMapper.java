@@ -18,11 +18,15 @@ public interface UserMapper {
 
   User findByName(@Param("userName") String userName);
 
+  User findByUsername(@Param("username") String username);
+
   User findByEmail(@Param("email") String email);
 
   void saveRelation(@Param("followRelation") FollowRelation followRelation);
 
   FollowRelation findRelation(@Param("userId") String userId, @Param("targetId") String targetId);
+
+
 }
 
 

@@ -2,10 +2,13 @@ package com.yang.realworld.api;
 
 
 import com.fasterxml.jackson.annotation.JsonRootName;
+import com.yang.realworld.api.exception.NoAuthorizationException;
 import com.yang.realworld.api.exception.ResourceNotFoundException;
 import com.yang.realworld.application.ArticleQueryService;
 import com.yang.realworld.application.data.ArticleData;
+import com.yang.realworld.domain.article.Article;
 import com.yang.realworld.domain.article.ArticleRepository;
+import com.yang.realworld.domain.service.AuthorizationService;
 import com.yang.realworld.domain.user.User;
 import java.util.HashMap;
 import java.util.Map;
@@ -47,9 +50,17 @@ public class ArticleApi {
   public ResponseEntity<?> updateArticle(@PathVariable("slug")String slug,
                                          @AuthenticationPrincipal User user,
                                          @Valid @RequestBody UpdateArticleParam updateArticleParam){
-
-    articleRepository.findBySlug(slug);
-    return null;
+    System.out.println("--- herhe ---");
+    Article article = articleRepository.findBySlug(slug)
+        .orElseThrow(ResourceNotFoundException::new);
+    if (!AuthorizationService.canWriteArticle(article, user)) {
+      throw new NoAuthorizationException();
+    }
+    article.update(updateArticleParam.getTitle(),
+                   updateArticleParam.getDescription(),
+                   updateArticleParam.getBody());
+    articleRepository.save(article);
+    return ResponseEntity.ok(articleResponse(articleQueryService.findBySlug(slug,user).get()));
   }
 
   private Map<String, Object> articleResponse(ArticleData articleData) {

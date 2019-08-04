@@ -1,6 +1,5 @@
 package com.yang.realworld.api;
 
-
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
@@ -17,34 +16,32 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 abstract class TestWithCurrentUser {
-
   @MockBean
   protected UserRepository userRepository;
 
   @MockBean
   protected UserReadService userReadService;
 
-  @MockBean
-  protected JwtService jwtService;
-
   protected User user;
   protected UserData userData;
   protected String token;
   protected String email;
-  protected String userName;
+  protected String username;
   protected String defaultAvatar;
 
+  @MockBean
+  protected JwtService jwtService;
+
   protected void userFixture() {
-    email = "1027@qq.com";
-    userName = "diego";
+    email = "john@jacob.com";
+    username = "johnjacob";
     defaultAvatar = "https://static.productionready.io/images/smiley-cyrus.jpg";
 
-    user = new User(email, userName, "123", "", defaultAvatar);
-    when(userRepository.findByUserName(eq(user.getUserName())))
-        .thenReturn(Optional.of(user));
+    user = new User(email, username, "123", "", defaultAvatar);
+    when(userRepository.findByUsername(eq(username))).thenReturn(Optional.of(user));
     when(userRepository.findById(eq(user.getId()))).thenReturn(Optional.of(user));
 
-    userData = new UserData(user.getId(),email,userName,"",defaultAvatar);
+    userData = new UserData(user.getId(), email, username, "", defaultAvatar);
     when(userReadService.findById(eq(user.getId()))).thenReturn(userData);
 
     token = "token";
@@ -52,7 +49,7 @@ abstract class TestWithCurrentUser {
   }
 
   @Before
-  public void setUp() throws Exception{
+  public void setUp() throws Exception {
     userFixture();
   }
 }

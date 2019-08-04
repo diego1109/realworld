@@ -54,5 +54,10 @@ public class MyBatisUserRepository implements UserRepository {
     return Optional.ofNullable(userMapper.findRelation(userId, targetId));
   }
 
+  @Override
+  public Optional<User> findByUsername(String username) {
+    return Optional.ofNullable(userMapper.findByUsername(username));
+  }
+
 
 }
