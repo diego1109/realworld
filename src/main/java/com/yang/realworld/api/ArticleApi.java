@@ -50,7 +50,6 @@ public class ArticleApi {
   public ResponseEntity<?> updateArticle(@PathVariable("slug")String slug,
                                          @AuthenticationPrincipal User user,
                                          @Valid @RequestBody UpdateArticleParam updateArticleParam){
-    System.out.println("--- herhe ---");
     Article article = articleRepository.findBySlug(slug)
         .orElseThrow(ResourceNotFoundException::new);
     if (!AuthorizationService.canWriteArticle(article, user)) {

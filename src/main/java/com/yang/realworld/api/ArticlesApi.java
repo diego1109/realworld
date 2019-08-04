@@ -13,6 +13,7 @@ import javax.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
@@ -47,7 +48,7 @@ public class ArticlesApi {
                                   newArticleParam.getBody(), newArticleParam.getTagList(),
                                   user.getId());
     articleRepository.save(article);
-    return ResponseEntity.ok(new HashMap<String, Object>() {{
+    return ResponseEntity.status(HttpStatus.CREATED).body(new HashMap<String, Object>() {{
       put("article", articleQueryService.findById(article.getId(), user).get());
     }});
   }
@@ -55,7 +56,7 @@ public class ArticlesApi {
 }
 
 @Getter
-@JsonRootName("acticle")
+@JsonRootName("article")
 @NoArgsConstructor
 class NewArticleParam {
 
