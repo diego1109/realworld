@@ -16,13 +16,13 @@
     A.slug articleSlug,
     A.title articleTitle,
     A.description ArticleDescription,
-    A.body articleBody
+    A.body articleBody,
     A.created_at articleCreateAt,
     A.updated_at articleUpdateAt,
     T.name tagName,
     <include refid="profileColumns"/>
     from articles A
-    left join article_tags AT on A.id = AT.id
+    left join article_tags AT on A.id = AT.article_id
     left join tags T on T.id = AT.tag_id
     left join users U on U.id = A.user_id
   </sql>

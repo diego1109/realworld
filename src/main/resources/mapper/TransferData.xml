@@ -14,9 +14,10 @@
     <id column="articleId" property="id"/>
     <result column="articleSlug" property="slug"/>
     <result column="ArticleDescription" property="description"/>
+    <result column="articleTitle" property="title"/>
     <result column="articleBody" property="body"/>
-    <result column="articleCreateAt" property="createAt"/>
-    <result column="articleUpdateAt" property="updateAt"/>
+    <result column="articleCreateAt" property="createdAt"/>
+    <result column="articleUpdateAt" property="updatedAt"/>
     <association property="profileData" resultMap="transfer.data.profileData"/>
     <collection property="tagList" javaType="list" ofType="String">
       <result column="tagName"/>
