@@ -39,11 +39,17 @@ public class ArticleApiTest extends TestWithCurrentUser {
   @MockBean
   private ArticleRepository articleRepository;
 
+  private Article article;
+
   @Override
   @Before
   public void setUp() throws Exception {
     super.setUp();
     RestAssuredMockMvc.mockMvc(mvc);
+    DateTime time = new DateTime();
+    article = new Article("New Article", "Desc", "Body",
+                          new String[]{"java", "spring", "jpg"}, user.getId(), time);
+
   }
 
   @Test
@@ -66,9 +72,6 @@ public class ArticleApiTest extends TestWithCurrentUser {
 
   @Test
   public void should_update_article_succeed() throws Exception {
-    DateTime time = new DateTime();
-    Article article = new Article("New Article", "Desc", "Body",
-                                  new String[]{"java", "spring", "jpg"}, user.getId(), time);
     Map<String, Object> updateParam = new HashMap<String, Object>() {{
       put("article", new HashMap<String, Object>() {{
         put("title", "update title"); put("description", "update description");
@@ -89,6 +92,17 @@ public class ArticleApiTest extends TestWithCurrentUser {
         .then()
         .statusCode(200)
         .body("article.slug", equalTo(articleData.getSlug()));
+  }
+
+  @Test
+  public void should_delete_article_succeed() {
+    when(articleRepository.findBySlug(eq(article.getSlug()))).thenReturn(Optional.of(article));
+    given()
+        .header("Authorization", "Token " + token)
+        .when()
+        .delete("/articles/{slug}",article.getSlug())
+        .then()
+        .statusCode(204);
   }
 
 }
