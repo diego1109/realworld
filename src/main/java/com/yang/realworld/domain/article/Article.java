@@ -9,12 +9,14 @@ import java.util.UUID;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.joda.time.DateTime;
 
 
 @Getter
 @NoArgsConstructor
 @EqualsAndHashCode(of = {"id"})
+@ToString
 public class Article {
 
   private String userId;

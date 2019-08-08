@@ -55,6 +55,9 @@
 		</set>
 		where id = #{article.id}
 	</update>
+	<delete id="remove">
+		delete from articles where id = #{articleId}
+	</delete>
 
 	<select id="findById" resultMap="article">
 		<include refid="selectArticle"/>

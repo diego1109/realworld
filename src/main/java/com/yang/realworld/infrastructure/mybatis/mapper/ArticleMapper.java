@@ -23,4 +23,6 @@ public interface ArticleMapper {
   void insert(@Param("article") Article article);
 
   Article findBySlug(@Param("slug") String slug);
+
+  void remove(@Param("articleId") String articleId);
 }

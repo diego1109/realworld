@@ -42,6 +42,7 @@ public class MybatisArticleRepositoryTest {
 
   @Test
   public void should_create_and_fetch_article_success() {
+    System.out.println(article);
     articleRepository.save(article);
     Optional<Article> optional = articleRepository.findById(article.getId());
     assertThat(optional.isPresent(), is(true));
@@ -67,5 +68,13 @@ public class MybatisArticleRepositoryTest {
     assertThat(fetched.getDescription(), is(article.getDescription()));
     assertThat(fetched.getTitle(), is(article.getTitle()));
     assertThat(fetched.getBody(), is(article.getBody()));
+  }
+
+  @Test
+  public void should_delete_article_succeed() {
+    articleRepository.save(article);
+    articleRepository.remove(article);
+    Optional<Article> optional = articleRepository.findById(article.getId());
+    assertThat(optional.isPresent(), is(false));
   }
 }
