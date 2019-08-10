@@ -12,4 +12,8 @@
     from article_favorites
     where article_id = #{articleId}
   </select>
+  <select id="articlesFavoriteCount"
+    resultType="com.yang.realworld.application.data.ArticleFavoriteCount">
+    
+  </select>
 </mapper>

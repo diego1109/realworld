@@ -60,6 +60,11 @@ public class ArticlesApiTest extends TestWithCurrentUser {
   }
 
   @Test
+  public void should_get_Articles_succeed(){
+
+  }
+
+  @Test
   public void create_article_by_params_succeed() {
 
     Article article = new Article("new title", "new description", "new body",
