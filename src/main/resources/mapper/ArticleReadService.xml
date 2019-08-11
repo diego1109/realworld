@@ -33,7 +33,7 @@
   </select>
 
   <select id="queryArticles" resultMap="articleId">
-    select distinct (A.id) article, A.created_at
+    select distinct (A.id) articleId, A.created_at
     from articles A
     left join article_tags AT on AT.article_id = A.id
     left join tags T on T.id = AT.tag_id
@@ -48,12 +48,37 @@
         and AU.username = #{author}
       </if>
       <if test="favoritedBy != null">
-        and AUF.username = #{favoritedBy}
+        and AFU.username = #{favoritedBy}
       </if>
     </where>
-    order by A.create_at desc
-    limit #{page.offset} ,#{page.limit}
+    order by A.created_at desc
+    limit #{page.offset},#{page.limit}
   </select>
+
+<!--  <select id="queryArticles" resultMap="articleId">-->
+<!--    select-->
+<!--    DISTINCT(A.id) articleId, A.created_at-->
+<!--    from-->
+<!--    articles A-->
+<!--    left join article_tags AT on A.id = AT.article_id-->
+<!--    left join tags T on T.id = AT.tag_id-->
+<!--    left join article_favorites AF on AF.article_id = A.id-->
+<!--    left join users AU on AU.id = A.user_id-->
+<!--    left join users AFU on AFU.id = AF.user_id-->
+<!--    <where>-->
+<!--      <if test="tag != null">-->
+<!--        T.name = #{tag}-->
+<!--      </if>-->
+<!--      <if test="author != null">-->
+<!--        AND AU.username = #{author}-->
+<!--      </if>-->
+<!--      <if test="favoritedBy != null">-->
+<!--        AND AFU.username = #{favoritedBy}-->
+<!--      </if>-->
+<!--    </where>-->
+<!--    order by A.created_at desc-->
+<!--    limit #{page.offset}, #{page.limit}-->
+<!--  </select>-->
 
   <select id="countArtile" resultType="java.lang.Integer">
     select count(distinct A.Id)
@@ -71,12 +96,12 @@
         and AU.username = #{author}
       </if>
       <if test="favoritedBy != null">
-        and AUF.username = #{favoritedBy}
+        and AFU.username = #{favoritedBy}
       </if>
     </where>
   </select>
 
-  <select id="findArticles" resultType="com.yang.realworld.application.data.ArticleData">
+  <select id="findArticles" resultMap="transfer.data.articleData">
     <include refid="selectArticleData"/>
     where A.id in
     <foreach index="index" collection="articleIds" item="id" open="(" separator="," close=")">

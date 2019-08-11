@@ -7,4 +7,14 @@
     from follows
     where user_id = #{userId} and follow_id = #{anotherUserId}
   </select>
+
+	<select id="followAuthors" resultType="java.lang.String">
+    select F.follow_id
+    from follows F
+    where F.follow_id in
+    <foreach collection="userIds" item="item" index="index" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+    and F.user_id = #{currentUserId}
+  </select>
 </mapper>

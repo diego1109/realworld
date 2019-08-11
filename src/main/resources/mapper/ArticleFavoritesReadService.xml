@@ -7,13 +7,32 @@
     from article_favorites
     where user_id = #{userId} and article_id = #{articleId}
   </select>
+
   <select id="articleFavoriteCount" resultType="java.lang.Integer">
     select count(1)
     from article_favorites
     where article_id = #{articleId}
   </select>
-  <select id="articlesFavoriteCount"
-    resultType="com.yang.realworld.application.data.ArticleFavoriteCount">
-    
+
+  <select id="articlesFavoriteCount" resultMap="transfer.data.articleCount">
+    select A.id articleId,count(AF.user_id) as favoritedCount from articles A
+    left join article_favorites AF on AF.article_id = A.id
+    where A.id in
+    <foreach collection="articleIds" item="item" index="index"  open="(" separator="," close=")" >
+      #{item}
+    </foreach>
+    group by A.id
   </select>
+
+  <select id="userFavorites" resultType="java.lang.String">
+    select A.id articleId
+    from articles A
+    left join article_favorites AF on AF.article_id = A.id
+    where A.id in
+    <foreach collection="articleIds" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+    and AF.user_id = #{currentUser.id}
+  </select>
+
 </mapper>

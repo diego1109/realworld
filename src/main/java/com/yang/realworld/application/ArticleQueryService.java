@@ -83,6 +83,33 @@ public class ArticleQueryService {
     }
   }
 
+  private void setIsFollowingAuthor(List<ArticleData> articleData, User currentUser) {
+    Set<String> followingAuthors = userRelationshipQueryService.followAuthors(currentUser.getId(),
+                                                                              articleData.stream()
+                                                                                  .map(item -> item
+                                                                                      .getProfileData()
+                                                                                      .getId())
+                                                                                  .collect(
+                                                                                      Collectors
+                                                                                          .toList()));
+    articleData.forEach(item -> {
+      if (followingAuthors.contains(item.getProfileData().getId())){
+        item.getProfileData().setFollowing(true);
+      }
+    });
+  }
+
+  private void setIsFavorite(List<ArticleData> articleData, User currentUser) {
+    Set<String> favoritedArticleIds = articleFavoritesReadService
+        .userFavorites(articleData.stream().map(item -> item.getId()).collect(Collectors.toList()),
+                       currentUser);
+    articleData.forEach(item -> {
+      if (favoritedArticleIds.contains(item.getId())) {
+        item.setFavorited(true);
+      }
+    });
+  }
+
   private void setFavoriteCount(List<ArticleData> articles) {
     List<ArticleFavoriteCount> favoriteCounts = articleFavoritesReadService.articlesFavoriteCount(
         articles.stream().map(articleData -> articleData.getId()).collect(Collectors.toList()));

@@ -23,4 +23,10 @@
       <result column="tagName"/>
     </collection>
   </resultMap>
+
+  <resultMap id="articleCount" type="com.yang.realworld.application.data.ArticleFavoriteCount">
+    <id property="id" column="articleId"/>
+    <result property="count" column="favoritedCount"/>
+  </resultMap>
+
 </mapper>

@@ -12,11 +12,11 @@ public class Page {
 
   private final int MAX_LIMITE = 100;
   private int offset;
-  private int limit;
+  private int limit = 20;
 
   public Page(int offset, int limit) {
+    setOffset(offset);
     setLimit(limit);
-    setLimit(offset);
   }
 
   public void setOffset(int offset) {
@@ -24,6 +24,8 @@ public class Page {
       this.offset = offset;
     }
   }
+
+
 
   public void setLimit(int limit) {
     if (limit > MAX_LIMITE) {
