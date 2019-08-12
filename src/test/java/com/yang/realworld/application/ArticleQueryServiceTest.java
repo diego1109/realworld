@@ -177,4 +177,21 @@ public class ArticleQueryServiceTest {
     Assert.assertThat(articleData.getProfileData().isFollowing(), is(true));
   }
 
+  @Test
+  public void should_get_user_feed(){
+    User anotherUser = new User("another@qq.com", "another", "123", "", "");
+    userRepository.save(anotherUser);
+
+    FollowRelation followRelation = new FollowRelation(anotherUser.getId(), user.getId());
+    userRepository.saveRelation(followRelation);
+
+    ArticleDataList userFeed = queryService.findUserFeed(user,new Page());
+    assertThat(userFeed.getCount(),is(0));
+
+    ArticleDataList anotherUserFeed = queryService.findUserFeed(anotherUser, new Page());
+    Assert.assertThat(anotherUserFeed.getCount(), is(1));
+    ArticleData articleData = anotherUserFeed.getArticleDatas().get(0);
+    Assert.assertThat(articleData.getProfileData().isFollowing(), is(true));
+  }
+
 }

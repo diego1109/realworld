@@ -65,6 +65,13 @@ public class ArticlesApi {
                                     @AuthenticationPrincipal User user) {
     return ResponseEntity.ok(articleQueryService.findRecentArticles(tag, author, favoritedBy, new Page(offset, limit), user));
   }
+
+  @GetMapping("feed")
+  public ResponseEntity getFeed(@RequestParam(value = "offset", defaultValue = "0") int offset,
+                                @RequestParam(value = "limit", defaultValue = "20") int limit,
+                                @AuthenticationPrincipal User user) {
+    return ResponseEntity.ok(articleQueryService.findUserFeed(user,new Page(offset,limit)));
+  }
 }
 
 @Getter

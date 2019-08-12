@@ -55,31 +55,6 @@
     limit #{page.offset},#{page.limit}
   </select>
 
-<!--  <select id="queryArticles" resultMap="articleId">-->
-<!--    select-->
-<!--    DISTINCT(A.id) articleId, A.created_at-->
-<!--    from-->
-<!--    articles A-->
-<!--    left join article_tags AT on A.id = AT.article_id-->
-<!--    left join tags T on T.id = AT.tag_id-->
-<!--    left join article_favorites AF on AF.article_id = A.id-->
-<!--    left join users AU on AU.id = A.user_id-->
-<!--    left join users AFU on AFU.id = AF.user_id-->
-<!--    <where>-->
-<!--      <if test="tag != null">-->
-<!--        T.name = #{tag}-->
-<!--      </if>-->
-<!--      <if test="author != null">-->
-<!--        AND AU.username = #{author}-->
-<!--      </if>-->
-<!--      <if test="favoritedBy != null">-->
-<!--        AND AFU.username = #{favoritedBy}-->
-<!--      </if>-->
-<!--    </where>-->
-<!--    order by A.created_at desc-->
-<!--    limit #{page.offset}, #{page.limit}-->
-<!--  </select>-->
-
   <select id="countArtile" resultType="java.lang.Integer">
     select count(distinct A.Id)
     from articles A
@@ -106,6 +81,22 @@
     where A.id in
     <foreach index="index" collection="articleIds" item="id" open="(" separator="," close=")">
     #{id}
+    </foreach>
+  </select>
+
+  <select id="findArticlesOfAuthors" resultMap="transfer.data.articleData">
+    <include refid="selectArticleData"/>
+    where A.user_id in
+    <foreach collection="followedUsers" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+    limit #{page.offset}, #{page.limit}
+  </select>
+
+  <select id="countFeedSize" resultType="java.lang.Integer">
+    select count(1) from articles A where A.user_id in 
+    <foreach collection="authors" index="index" item="item" open="(" separator="," close=")">
+      #{item}
     </foreach>
   </select>
 

@@ -17,4 +17,7 @@
     </foreach>
     and F.user_id = #{currentUserId}
   </select>
+  <select id="followedAuthors" resultType="java.lang.String">
+    select F.follow_id from follows F where F.user_id = #{userId}
+  </select>
 </mapper>

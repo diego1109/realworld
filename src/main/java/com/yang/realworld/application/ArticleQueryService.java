@@ -119,6 +119,18 @@ public class ArticleQueryService {
   }
 
 
+  public ArticleDataList findUserFeed(User user, Page page) {
+    List<String> followedUsers = userRelationshipQueryService.followedAuthors(user.getId());
+    if (followedUsers.size() == 0) {
+      return new ArticleDataList(new ArrayList<>(), 0);
+    } else {
+      List<ArticleData> articles = articleReadService.findArticlesOfAuthors(followedUsers, page);
+      fillExtraInfo(articles, user);
+      int count = articleReadService.countFeedSize(followedUsers);
+      return new ArticleDataList(articles, count);
+    }
+
+  }
 }
 
 
