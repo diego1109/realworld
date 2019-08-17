@@ -5,11 +5,14 @@ import static java.util.Arrays.asList;
 import static org.hamcrest.Matchers.equalTo;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.yang.realworld.application.CommentQueryService;
 import com.yang.realworld.application.data.CommentData;
 import com.yang.realworld.application.data.ProfileData;
+import com.yang.realworld.domain.Comment;
 import com.yang.realworld.domain.CommentRepository;
 import com.yang.realworld.domain.article.Article;
 import com.yang.realworld.domain.article.ArticleRepository;
@@ -97,7 +100,25 @@ public class CommentsApiTest extends TestWithCurrentUser {
         .then()
         .statusCode(200)
         .body("comment[0].id", equalTo(commentData.getId()));
+  }
 
+  @Test
+  public void should_delete_comment_succeed() {
+    Article article = new Article("new title", "new description", "new body",
+                                  new String[]{"java", "spring", "jpg"}, user.getId(),
+                                  new DateTime());
+    when(articleRepository.findBySlug(eq(article.getSlug()))).thenReturn(Optional.of(article));
+    Comment comment = new Comment("comment", user.getId(), article.getId());
+    when(commentRepository.findById(eq(article.getId()), eq(comment.getId())))
+        .thenReturn(Optional.of(comment));
 
+    given()
+        .header("Authorization", "Token " + token)
+        .contentType(ContentType.JSON)
+        .when()
+        .delete("/articles/{slug}/comments/{id}", article.getSlug(), comment.getId())
+        .then()
+        .statusCode(204);
+    verify(commentRepository, times(1)).remove(comment);
   }
 }

@@ -28,5 +28,10 @@ public class MybatisCommentRepository implements CommentRepository {
     return Optional.ofNullable(commentMapper.findById(articleId, id));
   }
 
+  @Override
+  public void remove(Comment comment) {
+
+  }
+
 
 }
