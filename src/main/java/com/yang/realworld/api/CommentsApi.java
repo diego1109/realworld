@@ -11,7 +11,9 @@ import com.yang.realworld.domain.article.Article;
 import com.yang.realworld.domain.article.ArticleRepository;
 import com.yang.realworld.domain.user.User;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import javax.persistence.NoResultException;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import lombok.Getter;
@@ -19,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -56,6 +59,15 @@ public class CommentsApi {
     commentRepository.save(comment);
     return ResponseEntity.status(201)
         .body(commentResponse(commentQueryService.findById(comment.getId(), user).get()));
+  }
+
+  @GetMapping
+  public ResponseEntity getComments(@PathVariable("slug") String slug,
+                                    @AuthenticationPrincipal User user) {
+
+    Article article = articleRepository.findBySlug(slug).orElseThrow(NoResultException::new);
+    List<CommentData> commentDatas = commentQueryService.findByArticleId(article.getId(), user);
+    return ResponseEntity.ok(new HashMap<String, Object>() {{put("comment", commentDatas);}});
   }
 
   private Map<String, Object> commentResponse(CommentData commentData) {
