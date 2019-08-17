@@ -30,7 +30,7 @@ public class MybatisCommentRepository implements CommentRepository {
 
   @Override
   public void remove(Comment comment) {
-
+    commentMapper.delete(comment);
   }
 
 

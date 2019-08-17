@@ -38,4 +38,13 @@ public class MybatisCommentRepositoryTest {
     assertThat(refetch.getUserId(), is(comment.getUserId()));
   }
 
+  @Test
+  public void should_delete_comment_succeed(){
+    Comment comment = new Comment("comment body", "diego", "article id");
+    commentRepository.save(comment);
+    commentRepository.remove(comment);
+    Optional<Comment> optional = commentRepository.findById(comment.getArticleId(),comment.getId());
+    assertThat(optional.isPresent(),is(false));
+  }
+
 }

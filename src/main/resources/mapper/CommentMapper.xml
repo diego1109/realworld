@@ -7,6 +7,9 @@
 		insert into comments (id,body,article_id,user_id,created_at,updated_at)
 		values (#{comment.id},#{comment.body},#{comment.articleId},#{comment.userId},#{comment.createdAt},#{comment.createdAt})
 	</insert>
+	<delete id="delete">
+		delete from comments where id = #{comment.id}
+	</delete>
 
 	<select id="findById" resultType="com.yang.realworld.domain.Comment">
 		select
