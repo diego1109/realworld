@@ -13,7 +13,7 @@ import com.yang.realworld.domain.service.JwtService;
 import com.yang.realworld.domain.user.User;
 import com.yang.realworld.domain.user.UserRepository;
 import com.yang.realworld.infrastructure.mybatis.readservice.UserReadService;
-import com.yang.realworld.infrastructure.repository.MyBatisUserRepository;
+import com.yang.realworld.infrastructure.mybatis.repository.MyBatisUserRepository;
 import com.yang.realworld.infrastructure.service.DefaultJwtService;
 import com.yang.realworld.infrastructure.service.NaiveEncryptService;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;

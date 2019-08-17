@@ -1,4 +1,4 @@
-package com.yang.realworld.infrastructure.repository;
+package com.yang.realworld.infrastructure.mybatis.repository;
 
 import com.yang.realworld.domain.article.Article;
 import com.yang.realworld.domain.article.ArticleRepository;
