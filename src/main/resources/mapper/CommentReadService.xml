@@ -19,4 +19,9 @@
 		where C.id = #{id}
 	</select>
 
+	<select id="findByArticleId" resultMap="transfer.data.CommentData">
+		<include refid="selectComment"/>
+		where C.article_id = #{articleId}
+	</select>
+
 </mapper>
