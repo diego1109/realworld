@@ -7,7 +7,7 @@ import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTest
 import com.yang.realworld.application.data.UserData;
 import com.yang.realworld.domain.user.User;
 import com.yang.realworld.domain.user.UserRepository;
-import com.yang.realworld.infrastructure.mybatis.repository.MyBatisUserRepository;
+import com.yang.realworld.infrastructure.repository.MyBatisUserRepository;
 import java.util.Optional;
 import org.junit.Before;
 import org.junit.Test;

@@ -1,14 +1,12 @@
 package com.yang.realworld.application;
 
-import static java.util.stream.Collectors.toList;
-
 import com.yang.realworld.application.data.ArticleData;
 import com.yang.realworld.application.data.ArticleDataList;
 import com.yang.realworld.application.data.ArticleFavoriteCount;
 import com.yang.realworld.domain.user.User;
-import com.yang.realworld.infrastructure.mybatis.ArticleFavoritesReadService;
-import com.yang.realworld.infrastructure.mybatis.ArticleReadService;
-import com.yang.realworld.infrastructure.mybatis.UserRelationshipQueryService;
+import com.yang.realworld.infrastructure.mybatis.readservice.ArticleFavoritesReadService;
+import com.yang.realworld.infrastructure.mybatis.readservice.ArticleReadService;
+import com.yang.realworld.infrastructure.mybatis.readservice.UserRelationshipQueryService;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

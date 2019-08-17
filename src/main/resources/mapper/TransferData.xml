@@ -29,4 +29,11 @@
     <result property="count" column="favoritedCount"/>
   </resultMap>
 
+  <resultMap id="CommentData" type="com.yang.realworld.application.data.CommentData">
+    <id column="commentId" property="id"/>
+    <result column="commentBody" property="body"/>
+    <result column="commnetCreatedAt" property="created_at"/>
+    <result column="commnetCreatedAt" property="updated_at"/>
+    <association property="profileData" resultMap="profileData"/>
+  </resultMap>
 </mapper>

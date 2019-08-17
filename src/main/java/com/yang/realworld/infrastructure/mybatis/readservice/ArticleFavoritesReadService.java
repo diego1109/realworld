@@ -1,4 +1,4 @@
-package com.yang.realworld.infrastructure.mybatis;
+package com.yang.realworld.infrastructure.mybatis.readservice;
 
 import com.yang.realworld.application.data.ArticleFavoriteCount;
 import com.yang.realworld.domain.user.User;

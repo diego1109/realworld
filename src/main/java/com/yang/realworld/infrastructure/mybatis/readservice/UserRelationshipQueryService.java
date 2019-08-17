@@ -1,4 +1,4 @@
-package com.yang.realworld.infrastructure.mybatis;
+package com.yang.realworld.infrastructure.mybatis.readservice;
 
 import java.util.List;
 import java.util.Set;

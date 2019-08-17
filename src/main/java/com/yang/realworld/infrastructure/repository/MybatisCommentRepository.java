@@ -1,4 +1,4 @@
-package com.yang.realworld.infrastructure.mybatis.repository;
+package com.yang.realworld.infrastructure.repository;
 
 import com.yang.realworld.domain.Comment;
 import com.yang.realworld.domain.CommentRepository;

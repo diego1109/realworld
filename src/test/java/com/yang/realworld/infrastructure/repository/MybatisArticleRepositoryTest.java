@@ -1,4 +1,4 @@
-package com.yang.realworld.infrastructure.mybatis.repository;
+package com.yang.realworld.infrastructure.repository;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;

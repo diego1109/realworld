@@ -1,4 +1,4 @@
-package com.yang.realworld.infrastructure.mybatis;
+package com.yang.realworld.infrastructure.mybatis.readservice;
 
 import com.yang.realworld.application.Page;
 import com.yang.realworld.application.data.ArticleData;

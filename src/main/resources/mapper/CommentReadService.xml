@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yang.realworld.infrastructure.mybatis.readservice.CommentReadService">
+
+	<sql id="selectComment">
+		select
+			C.id commentId,
+			C.body commentBody,
+			C.created_at commentCreateDAt,
+			<include
+				refid="com.yang.realworld.infrastructure.mybatis.readservice.ArticleReadService.profileColumns"/>
+		from comments C
+		left join users U on U.id = C.user_id
+	</sql>
+
+	<select id="findById" resultMap="transfer.data.CommentData">
+		<include refid="selectComment"/>
+		where C.id = #{id}
+	</select>
+
+</mapper>
