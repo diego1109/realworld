@@ -13,8 +13,12 @@
     )
     </insert>
 
+	<delete id="deleteRelation">
+    delete from follows where user_id = #{relation.userId} and follow_id = #{relation.targetId}
+  </delete>
 
-  <select id="findById" resultMap="user">
+
+	<select id="findById" resultMap="user">
     select id,username, email,password,bio,image
     from users
     where id = #{id}

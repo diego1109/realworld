@@ -59,5 +59,10 @@ public class MyBatisUserRepository implements UserRepository {
     return Optional.ofNullable(userMapper.findByUsername(username));
   }
 
+  @Override
+  public void removeRelation(FollowRelation relation) {
+    userMapper.deleteRelation(relation);
+  }
+
 
 }

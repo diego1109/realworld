@@ -18,4 +18,6 @@ public interface UserRepository {
   Optional<FollowRelation> findRelation(String userId,String targetId);
 
   Optional<User> findByUsername(String eq);
+
+  void removeRelation(FollowRelation relation);
 }

@@ -27,6 +27,7 @@ public interface UserMapper {
   FollowRelation findRelation(@Param("userId") String userId, @Param("targetId") String targetId);
 
 
+  void deleteRelation(@Param("relation") FollowRelation relation);
 }
 
 
