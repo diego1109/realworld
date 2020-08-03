@@ -13,18 +13,30 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    services:
-      mysql:
-        image: mysql:5.7
-        env:
-          MYSQL_ROOT_PASSWORD: 12345
-          MYSQL_DATABASE: realworld
-        ports:
-          - 33306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
     - uses: actions/checkout@v2
+    - name: Start MySQL
+      uses: samin/mysql-action@v1.3
+      with:
+        # The port of host
+        host port: # optional, default is 3306
+        # The port of container
+        container port: # optional, default is 3306
+        # --character-set-server - The character set of MySQL server
+        character set server: # optional, default is utf8mb4
+        # --collation-server - The character collation of MySQL server
+        collation server: # optional, default is utf8mb4_general_ci
+        # Version of MySQL to use
+        mysql version: 5.8
+        # MYSQL_ROOT_PASSWORD - root superuser password
+        mysql root password:
+        # MYSQL_DATABASE - name for the default database that is created
+        mysql database: realworld
+        # MYSQL_USER - create the specified user with superuser power for created database
+        mysql user: root
+        # MYSQL_PASSWORD - specified superuser password which user is power for created database
+        mysql password: 12345
     - name: Set up JDK 1.8
       uses: actions/setup-java@v1
       with:
