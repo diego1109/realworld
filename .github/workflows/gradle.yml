@@ -16,27 +16,17 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Start MySQL
-      uses: samin/mysql-action@v1.3
+    - name: Shutdown default mysql
+      run: sudo service mysql stop
+      # 创建数据库
+    - name: Create mysql database auth
+      uses: icomponent/mysql-action@master
       with:
-        # The port of host
-        host port: 3306
-        # The port of container
-        container port: 3306
-        # --character-set-server - The character set of MySQL server
-        character set server: utf8mb4
-        # --collation-server - The character collation of MySQL server
-        collation server: utf8mb4_general_ci
-        # Version of MySQL to use
-        mysql version: 5.7
-        # MYSQL_ROOT_PASSWORD - root superuser password
-        mysql root password: root
-        # MYSQL_DATABASE - name for the default database that is created
-        mysql database: realworld
-        # MYSQL_USER - create the specified user with superuser power for created database
-        mysql user: root
-        # MYSQL_PASSWORD - specified superuser password which user is power for created database
-        mysql password: 12345
+        VERSION: 5.7
+        CONTAINER_NAME: mysql
+        PORT_MAPPING: 3306:3306
+        ROOT_PASSWORD: root
+        DATABASE: realworld
     - name: Set up JDK 1.8
       uses: actions/setup-java@v1
       with:
