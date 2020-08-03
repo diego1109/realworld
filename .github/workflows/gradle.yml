@@ -30,7 +30,7 @@ jobs:
         # Version of MySQL to use
         mysql version: 5.8
         # MYSQL_ROOT_PASSWORD - root superuser password
-        mysql root password:
+        mysql root password: root
         # MYSQL_DATABASE - name for the default database that is created
         mysql database: realworld
         # MYSQL_USER - create the specified user with superuser power for created database
