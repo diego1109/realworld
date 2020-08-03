@@ -28,7 +28,7 @@ jobs:
         # --collation-server - The character collation of MySQL server
         collation server: utf8mb4_general_ci
         # Version of MySQL to use
-        mysql version: 5.8
+        mysql version: 5.7
         # MYSQL_ROOT_PASSWORD - root superuser password
         mysql root password: root
         # MYSQL_DATABASE - name for the default database that is created
