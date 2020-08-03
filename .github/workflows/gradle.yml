@@ -13,20 +13,20 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: 12345
+        ports:
+          - 32574:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
     - uses: actions/checkout@v2
-    - name: Shutdown default mysql
-      run: sudo service mysql stop
-      # 创建数据库
-    - name: Create mysql database auth
-      uses: icomponent/mysql-action@master
-      with:
-        VERSION: 5.7
-        CONTAINER_NAME: mysql
-        PORT_MAPPING: 3306:3306
-        ROOT_PASSWORD: root
-        DATABASE: realworld
+    - name: Verify MySQL connection from host
+        run: |
+          sudo apt-get install -y mysql-client
+          mysql --host 127.0.0.1 --port 32574 -uroot -p12345 -e "SHOW DATABASES"
     - name: Set up JDK 1.8
       uses: actions/setup-java@v1
       with:
